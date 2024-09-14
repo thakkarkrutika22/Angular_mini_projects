@@ -1,0 +1,261 @@
+<div class="progress-wrapper">
+	<div id="progress-bar-container">
+		<ul>
+			<li class="step step01" [ngClass]="step.isActive ? 'active': ''"
+				(click)="setActiveStep(step)" *ngFor="let step of steps; let i = index">
+				<div class="step-inner">{{step.stepName}}</div>
+			</li>
+		</ul>
+		<div id="line">
+			<div id="line-progress" [style.width.%]="stepperCompletionValue"></div>
+		</div>
+		<!-- progress-bar-container -->
+		<div id="progress-content-section">
+			<div class="section-content step1 active" *ngIf="activeStepIndex === 0">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label>Name :</label>
+							<input type="text" [(ngModel)]="employee.empName" placeholder="Enter Name" class="form-control">
+						</div>
+						<div class="form-group col-md-4">
+							<label>Email :</label>
+							<input type="text" [(ngModel)]="employee.empEmailId" placeholder="Enter Email" class="form-control">
+						</div>
+						<div class="form-group col-md-4">
+							<label>Password :</label>
+							<input type="password" [(ngModel)]="employee.password" placeholder="Enter Password" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Designation :</label>
+							<select class="form-select" [(ngModel)]="employee.empDesignationId">
+								<option value="">
+									Select Designation
+								</option>
+								@for (item of designationList; track $index) {
+									<option [value]="item.designationId">{{item.designation}}</option>
+								}
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label> Role: </label>
+							<select class="form-select" [(ngModel)]="employee.roleId">
+								<option [value]="">Select Role
+									
+								</option>
+								<option *ngFor="let role of rolesList" [value]="role.roleId">{{role.role}}</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Contact No :</label>
+							<input type="text" [(ngModel)]="employee.empContactNo" placeholder="Enter Contact No" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>User name :</label>
+							<input type="text" [(ngModel)]="employee.userName" placeholder="Enter user name" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Alternate Contact No :</label>
+							<input type="text" [(ngModel)]="employee.empAltContactNo" placeholder="Alternate Contact No." class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Personal Email ID :</label>
+							<input type="text" [(ngModel)]="employee.empPersonalEmailId" placeholder="Enter Personal EmailID" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Total Years of Experience :</label>
+							<input type="text" [(ngModel)]="employee.empExpTotalYear" placeholder="Enter total Years of Experience" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Total Month of Experience :</label>
+							<input type="text" [(ngModel)]="employee.empExpTotalMonth" placeholder="Enter month of Experience" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>City :</label>
+							<input type="text" [(ngModel)]="employee.empCity" placeholder="Enter City" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>State :</label>
+							<input type="text" [(ngModel)]="employee.empState" placeholder="Enter State" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label>Address :</label>
+							<textarea [(ngModel)]="employee.empAddress" placeholder="Enter Address" class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Pincode :</label>
+							<input type="text" [(ngModel)]="employee.empPinCode" placeholder="Enter Pincode" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Personal City :</label>
+							<input type="text" [(ngModel)]="employee.empPerCity" placeholder="Enter Personal City" class="form-control">
+						</div>
+
+					</div>
+					<div class="row">
+
+						<div class="form-group col-md-6">
+							<label>Personal State :</label>
+							<input type="text" [(ngModel)]="employee.empPerState" placeholder="Enter Personal State" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Personal Pin Code :</label>
+							<input type="text" [(ngModel)]="employee.empPerPinCode" placeholder="Enter Personal Pin Code" class="form-control">
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Personal Address :</label>
+							<textarea [(ngModel)]="employee.empPerAddress" placeholder="Enter Personal Address" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-primary" type="submit" (click)="gotoStep2()"> Next </button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="section-content step2 active" *ngIf="activeStepIndex === 1">
+				<div class="container-fluid">
+					<div class="form-group mt-2" id="tblSkill">
+						<div class="container">
+							<h5>Add Skills -</h5>
+							<div id="table-container">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Skill Name</th>
+											<th>Total Experience</th>
+											<th>Last Version</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let skill of employee.employeeSkills">
+											<td>
+												<input type="text" [(ngModel)]="skill.skill" placeholder="Skill" class="form-control">
+											</td>
+											<td>
+												<input type="text" [(ngModel)]="skill.totalYearExp" placeholder="Total Experience" class="form-control">
+											</td>
+											<td>
+												<input type="text" [(ngModel)]="skill.lastVersionUsed" placeholder="Last Version" class="form-control">
+
+											</td>
+
+											<td class="btn-container">
+												<button class="btn btn-sm btn-success"><i class="fa fa-save"></i>
+													Save</button>
+												<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Delete</button>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<button class="btn btn-sm btn-info" (click)="addSkills()">Add</button>
+
+											</td>
+										</tr>
+									</tbody>
+									<tfoot>
+									</tfoot>
+								</table>
+								<div class="btn-container d-flex justify-content-end">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-primary" type="submit" (click)="gotoStep3()"> Next </button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section-content step3 active" *ngIf="activeStepIndex === 2">
+				<div class="container-fluid">
+					<div class="form-group mt-2" id="tblExperience">
+						<div class="container">
+							<h5>Add Experience -</h5>
+							<div id="table-container">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Company</th>
+											<th>Start Date</th>
+											<th>End Date</th>
+											<th>Designation</th>
+											<th>Project</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let exp of employee.employeeExperience">
+											<td>
+												<input type="text" [(ngModel)]="exp.companyName" class="form-control " placeholder="Company">
+											</td>
+											<td>
+												<input type="date" [(ngModel)]="exp.startDate" class="form-control" placeholder="Start Date">
+											</td>
+											<td>
+												<input type="date" [(ngModel)]="exp.endDate" class="form-control" placeholder="End Date">
+											</td>
+											<td>
+												<input type="text" [(ngModel)]="exp.designation" class="form-control" placeholder="Designation">
+											</td>
+											<td>
+												<input type="text" [(ngModel)]="exp.projectsWorkedOn" class="form-control" placeholder="Project">
+											</td>
+
+											<td class="col-md-12 btn-container d-flex">
+												<button class="btn btn-sm btn-success">
+													<i class="fa fa-save fa-sm"></i> Save
+												</button>
+												<button class="btn btn-sm btn-danger">
+													<i class="fa fa-trash fa-sm "></i> Delete
+												</button>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="6">
+												<button class="btn btn-sm btn-info" (click)="addExp()">Add</button>
+
+											</td>
+										</tr>
+									</tbody>
+									<tfoot>
+									</tfoot>
+								</table>
+
+							</div>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-primary" type="submit" (click)="saveEmployee()"> Finish </button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- progress-wrapper -->
+</div>

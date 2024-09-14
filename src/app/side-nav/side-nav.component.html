@@ -1,0 +1,14 @@
+<!-- <div *ngFor="let item of menuConfig" [attr.data-test-id]="'first-level-' + item.title.toLowerCase()">
+    {{item.title}}
+    <span *ngIf="item.subItems && item.subItems.length > 0">
+        <button [attr.data-test-id]="'button-' + item.title.toLowerCase()" (click)="handleExpand(item.title)">
+            {{uniqueItems.has(item.title) ? 'Hide' : 'Expand'}}
+        </button>
+    </span>
+
+    <div *ngIf="uniqueItems.has(item.title)">
+        <ul *ngFor="let subItem of item.subItems" [attr.data-test-id]="'ul-' + item.title.toLowerCase()">
+            <li [attr.data-test-id]="'li-' + item.title.toLowerCase() + '-' + subItem.toLowerCase()">{{subItem}}</li>
+        </ul>
+    </div>
+</div> -->

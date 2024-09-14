@@ -1,0 +1,8 @@
+<div>
+    <div>
+            <button [disabled]="btnStatus" (click)="onSelectUser()">
+                <img [src]="'users/' + user.avatar" [alt]="user.name" />
+                <span>{{user.name}}</span>
+            </button>
+    </div>
+</div>

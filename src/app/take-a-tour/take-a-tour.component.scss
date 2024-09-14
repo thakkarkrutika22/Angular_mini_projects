@@ -1,0 +1,25 @@
+header {
+    background-color: pink;
+}
+
+section {
+    background-color: beige;
+    height: 80%;
+}
+
+footer {
+    background-color: aqua;
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+}
+
+.container-sub {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
+
